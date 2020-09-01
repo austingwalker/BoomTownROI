@@ -23,6 +23,7 @@ npm install OR yarn install
 ```sh
 npm start OR yarn start
 ```
+4. Navigate to http://localhost:3000/
 
 
 ### Built With
