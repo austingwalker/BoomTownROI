@@ -37,7 +37,7 @@ npm start OR yarn start
 ## Ways to Improve
 
 ### Async/Await
-  * Ran out of time trouble shooting the following issues:
+  * Ran out of time troubleshooting the following issues:
     1. Had trouble running all the await calls in parallel using Promis.all:
     ```javascript
     const repos = checkUrls(data.repos_url)
