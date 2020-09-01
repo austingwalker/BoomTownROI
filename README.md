@@ -14,7 +14,7 @@
 
 1. Clone the repo
 ```sh
-git clone https://github.com/austingwalker/Volunteer-Manager-MERN
+git clone https://github.com/austingwalker/BoomTownROI.git
 ```
 2. Install NPM packages
 ```sh
