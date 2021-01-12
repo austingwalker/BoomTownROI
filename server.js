@@ -8,34 +8,38 @@ const fetch = require('node-fetch');
 app.get("/", async (req, res) => {
     const queryURL = "https://api.github.com/orgs/boomtownroi";
 
-    const data = await fetch(queryURL).then(res => res.json());
+    try {
+        const data = await fetch(queryURL).then(res => res.json());
 
-    const repos = await checkUrls(data.repos_url)
-    const events = await checkUrls(data.events_url)
-    const hooks = await checkUrls(data.hooks_url)
-    const issues = await checkUrls(data.issues_url)
-    const members = await checkUrls(data.members_url)
-    const public_members = await checkUrls(data.public_members_url)
+        const repos = await checkUrls(data.repos_url)
+        const events = await checkUrls(data.events_url)
+        const hooks = await checkUrls(data.hooks_url)
+        const issues = await checkUrls(data.issues_url)
+        const members = await checkUrls(data.members_url)
+        const public_members = await checkUrls(data.public_members_url)
 
-    const created = new Date(data.created_at) 
-    const updated = new Date(data.updated_at)
-    const verify = checkDate(created, updated)
+        const created = new Date(data.created_at) 
+        const updated = new Date(data.updated_at)
+        const verify = checkDate(created, updated)
 
-    const compare = checkRepos(data.public_repos, repos.ids.length)
+        const compare = checkRepos(data.public_repos, repos.ids.length)
 
-    const output = {
-        verify,
-        compare,
-        hooks,
-        issues,
-        members,
-        public_members,
-        repos,
-        events,
+        const output = {
+            verify,
+            compare,
+            hooks,
+            issues,
+            members,
+            public_members,
+            repos,
+            events,
+        }
+
+        res.send(output);
+    } catch(e) {
+        console.log(e)
     }
-
-    res.send(output);
-});
+})
 
 //Function makes api call to all urls containing api.github.com/orgs/BoomTownROI in the path
 checkUrls = (url) => {

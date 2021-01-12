@@ -6,7 +6,7 @@
 
 * [Getting Started](#getting-started)
 * [Built With](#built-with)
-* [Ways to Improve](#ways-to-improve)
+* [Assesment Instructions](#assesment-instructions)
 
 
 <!-- GETTING STARTED -->
@@ -34,26 +34,21 @@ npm start OR yarn start
 * [node-fetch](https://www.npmjs.com/package/node-fetch)
 
 
-## Ways to Improve
+## Assessment Instructions
 
-### Async/Await
-  * Ran out of time troubleshooting the following issues:
-    1. Had trouble running all the await calls in parallel using Promis.all:
-    ```javascript
-    const repos = checkUrls(data.repos_url)
-    const events = checkUrls(data.events_url)
-    const hooks = checkUrls(data.hooks_url)
-    const issues = checkUrls(data.issues_url)
-    const members = checkUrls(data.members_url)
-    const public_members = checkUrls(data.public_members_url)
-    const urls = await Promise.all([repos, events, hooks, issues, members, public_members])
-    ```
-    2. Also had issues adding error catching properly.
+Technical Assessment
+Using the GitHub API and your language of choice, pull top-level details for the BoomTownROI organization at:
+https://api.github.com/orgs/boomtownroi
+From the top-level organization details result object, complete the following:
 
-### checkIds Function
-  * I believe Function is currently O(N²) so could possibly be made more efficient. Stringify’ing the object and using Regex to capture all "id's" may also be a solution but I’m not familiar enough with Regex to do that in the allotted timeframe.
+1. Output Data:
 
-### Non-200 Status Code Pages
-  * I successfully provided indication of the failed request but wasn’t sure what the following hint was asking for, “Devise a way for the end user to make sense of the id values, related to the original resource route used to retrieve the data.”
-    * With more clarity the output structure could be altered to meet this requirement.
+- Follow all urls containing "api.github.com/orgs/BoomTownROI" in the path, and for responses with a 200 status code, retrieve and display all 'id' keys/values in the response objects. For all non-200 status codes, give some indication of the failed request. HINT: Devise a way for the end user to make sense of the id values, related to the original resource route used to retrieve the data.
 
+2. Perform Verifications:
+
+- On the top-level BoomTownROI organization details object, verify that the 'updated_at' value is later than the 'created_at' date.
+
+- On the top-level details object, compare the 'public_repos' count against the repositories array returned from following the 'repos_url', verifying that the counts match. HINT: The public repositories resource only returns a default limit of 30 repo objects per request.
+
+Using libraries to complete the assignment is allowed (and for some parts of the assignment encouraged), but please refrain from using fully-featured frameworks such as create-react-app, Java Spring, or Laravel to complete this assignment
